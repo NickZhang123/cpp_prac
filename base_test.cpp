@@ -1,6 +1,7 @@
 # include <iostream>
 # include <functional>
 # include <algorithm>
+# include <vector>
 # include "base_test.h"
 # include "toos.h"
 
@@ -23,8 +24,8 @@ void func3(std::ostream& os, int value)
 
 void base_test()
 {
-    cout << "base_test start" << endl;
 
+    cout << "base_test start" << endl;
 /*
     int a = 3;
     int &b = a;
@@ -88,6 +89,7 @@ void func4(const int* ptr)
 int base_test2() 
 {
     cout << "base_test2 start" << endl;
+/*
     Base* basePtr = new Derived;
     Derived* derivedPtr = dynamic_cast<Derived*>(basePtr);
     if (derivedPtr != nullptr) {
@@ -106,11 +108,33 @@ int base_test2()
         std::cout << "Conversion failed\n";         // here
     }
     
-
     const int a = 10;
     func4(&a);                      // 警告：修改了常量对象
     std::cout << a << std::endl;    // 输出 20 (未定义行为)
-
+*/
     cout << "base_test2 end" << endl;
     return 0;
+}
+
+void func5(int a)
+{
+    cout << a << " ";
+}
+
+int base_test3() 
+{
+    cout << "base_test3 start" << endl;
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    for_each(vec.begin(), vec.end(), func5);
+    cout << endl;
+
+    for_each(vec.begin(), vec.end(), [](int a){ cout << a << " ";});
+    cout << endl;
+
+    print(sizeof(int), sizeof(short), sizeof(long), sizeof(long long));
+    print(sizeof(unsigned int), sizeof(unsigned short), sizeof(unsigned long), sizeof(unsigned long long));
+
+    print(sizeof(float), sizeof(double), sizeof(long double)); // 4 8 16
+    print(sizeof(char), sizeof(wchar_t));
+    cout << "base_test3 end" << endl;
 }
