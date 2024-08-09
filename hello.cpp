@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <cstdio>
+#include "base_test.h"
 
 using namespace std;
 
@@ -13,6 +14,8 @@ int main()
 
     void *p = NULL;
     printf("%p\n", p);
+
+    base_test();
 
     return 0;
 }

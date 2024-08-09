@@ -1,29 +1,5 @@
 {
     "tasks": [
-        {
-            "label": "01_cpp编译_单文件",        // 编译
-            "type": "cppbuild",                 // 默认是shell
-  
-            "command": "/usr/bin/g++",          // linux g++地址  
-            "args": [
-                "-g", 
-                "${file}", 
-                "-std=c++11",
-                "-o", 
-                "${fileDirname}/out/${fileBasenameNoExtension}"],  // 参数
-              
-            "options": {
-              "cwd": "${fileDirname}"
-            },
-            "problemMatcher": ["$gcc"],
-            "group": {
-              "kind": "build",
-              "isDefault": true
-            },
-              
-            "detail": "编译"
-          },
-  
           {
             "label": "02_cpp编译_多文件",
             "type": "cppbuild", 
@@ -48,7 +24,47 @@
             },
               
             "detail": "编译"
-          }
+          },
+
+          {
+            "label": "01_cpp编译_单文件",        // 编译
+            "type": "cppbuild",                 // 默认是shell
+  
+            "command": "/usr/bin/g++",          // linux g++地址  
+            "args": [
+                "-g", 
+                "${file}", 
+                "-std=c++11",
+                "-o", 
+                "${fileDirname}/out/${fileBasenameNoExtension}"],  // 参数
+              
+            "options": {
+              "cwd": "${fileDirname}"
+            },
+            "problemMatcher": ["$gcc"],
+            "group": {
+              "kind": "build",
+              "isDefault": true
+            },
+              
+            "detail": "编译"
+          },
+
+          {
+            "label": "03_run",              
+            "type": "shell",                
+  
+            "command": "./out/finalobj",      
+            "args": [ ],  
+
+            "group": {
+              "kind": "build",
+              "isDefault": true
+            },
+              
+            "detail": "运行",
+            "dependsOn": "02_cpp编译_多文件"
+          },
     ],
     "version": "2.0.0"
 }
