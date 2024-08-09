@@ -1,5 +1,6 @@
 #pragma
 
 void base_test();
-int base_test2();
-int base_test3();
+void base_test2();
+void base_test3();
+void base_test4();

@@ -3,11 +3,12 @@
           {
             "label": "02_cpp编译_多文件",
             "type": "cppbuild", 
-            "command": "/usr/bin/g++",
+            //"command": "/usr/bin/g++",
+            "command": "/usr/local/gcc10/bin/g++",
             "args": [
                 "-g", 
                 "${workspaceFolder}/*.cpp",        // 编译所有cpp
-                "-std=c++11",
+                "-std=c++17",
                 //"-I", // 指定include
                 //"${workspaceFolder}/cpp/tools/",    
                 "-o", // 输出对象
@@ -30,11 +31,13 @@
             "label": "01_cpp编译_单文件",        // 编译
             "type": "cppbuild",                 // 默认是shell
   
-            "command": "/usr/bin/g++",          // linux g++地址  
+            //"command": "/usr/bin/g++",          // linux g++地址  
+            "command" : "/usr/local/gcc10/bin/g++ ",
             "args": [
                 "-g", 
                 "${file}", 
-                "-std=c++11",
+                "-std=c++17",
+                //"-std=c++11",
                 "-o", 
                 "${fileDirname}/out/${fileBasenameNoExtension}"],  // 参数
               

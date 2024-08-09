@@ -3,12 +3,15 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**", 
+                "/usr/local/gcc10/include/c++/10.4.0"
             ],
             "defines": [],
-            "compilerPath": "/usr/bin/gcc",
+            //"compilerPath": "/usr/bin/gcc",
+            "compilerPath": "/usr/local/gcc10/bin/g++",
             "cStandard": "c11",
-            "cppStandard": "c++14",
+            //"cppStandard": "c++14",
+            "cppStandard": "c++17",
             "intelliSenseMode": "linux-gcc-x64"
         }
     ],
