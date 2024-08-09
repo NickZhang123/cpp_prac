@@ -23,7 +23,7 @@ void func3(std::ostream& os, int value)
 
 void base_test()
 {
-    cout << "开始基础测试" << endl;
+    cout << "base_test start" << endl;
 
 /*
     int a = 3;
@@ -57,7 +57,60 @@ void base_test()
     auto bound_print = bind(func3, ref(os), 42);
     bound_print();
     print("==========");
+
+    double d = 3.14;
+    int i = static_cast<int>(d);  
+    print(i);
+
+    class Base {};
+    class Derived : public Base {};
+    Base* b = new Derived();
+    Derived* d1 = static_cast<Derived*>(b);     // 向下转换
 */
 
-    cout << "完成基础测试" << endl;
+    cout << "base_test end" << endl;
+}
+
+
+class Base {
+public:
+    virtual ~Base() = default;  // 启用 RTTI
+};
+
+class Derived : public Base {};
+
+void func4(const int* ptr) 
+{
+    int* non_const_ptr = const_cast<int*>(ptr); // 去除 const 限定符
+    *non_const_ptr = 20;                        // 修改值
+}
+
+int base_test2() 
+{
+    cout << "base_test2 start" << endl;
+    Base* basePtr = new Derived;
+    Derived* derivedPtr = dynamic_cast<Derived*>(basePtr);
+    if (derivedPtr != nullptr) {
+        std::cout << "Conversion successful\n";     // here
+        delete basePtr;
+    } else {
+        std::cout << "Conversion failed\n";
+    }
+    
+    Base* basePtr2 = new Base();
+    Derived* derivedPtr2 = dynamic_cast<Derived*>(basePtr);
+    if (derivedPtr2 != nullptr) {
+        std::cout << "Conversion successful\n";
+        delete derivedPtr2;
+    } else {
+        std::cout << "Conversion failed\n";         // here
+    }
+    
+
+    const int a = 10;
+    func4(&a);                      // 警告：修改了常量对象
+    std::cout << a << std::endl;    // 输出 20 (未定义行为)
+
+    cout << "base_test2 end" << endl;
+    return 0;
 }

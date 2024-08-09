@@ -16,6 +16,7 @@ int main()
     printf("%p\n", p);
 
     base_test();
+    base_test2(); 
 
     return 0;
 }
