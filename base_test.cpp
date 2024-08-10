@@ -226,6 +226,24 @@ int func11(int a)
     return a;
 }
 
+// 左值参数
+void func13(int &t)
+{
+    cout << "func13(int &t)" << endl;
+}
+
+// 右值参数
+void func13(int &&t)
+{
+    cout << "func13(int &&t)" << endl;
+}
+
+template<typename T>
+void func12(T&& t)                  // 通用模版，可接受左值和右值
+{   
+    func13(std::forward<T>(t));     // 完美转发左值和右值
+}
+
 void base_test4()
 {
     // 默认参数测试
@@ -250,5 +268,80 @@ void base_test4()
     auto VER = __cplusplus;
     print(VER);
 
+    // 参数转发
+    int a = 1;
+    func12(a);              // func13(int &t)
+    func12(std::move(a));   // func13(int &&t)
+    func12(1);              // func13(int &&t)
+
 }
 
+int *func20(int size)
+{
+    return new int[size];
+}
+
+int &func20(vector<int> &vec, int idx)
+{
+    return vec[idx];  
+}
+
+void func21(int i) { cout << "int " <<  i << endl;}
+void func21(double d) { cout << "double " <<  d << endl;}
+void func21(const string &s) { cout << "string " <<  s << endl;}
+
+int Max(int a, int b)
+{
+    cout << "int Max(int a, int b)  ";
+    return a > b ? a : b;
+}
+
+template<typename T>
+T Max(T a, T b)  // 模板包括普通函数
+{
+    cout << "T Max(T a, T b) ";
+    return a > b ? a : b;
+}
+
+template<typename T>
+T Max(T a, T b, T c) // 模板函数重载
+{
+    cout << "T Max(T a, T b, T c)  ";
+    return Max(Max(a, b), c);
+}
+
+int factorial(int n)
+{
+    if (n == 0) {
+        return 1;
+    } else {
+        return n * factorial(n - 1);
+    }
+}
+
+void base_test5()
+{
+    int *p = func20(10);
+    delete []p;
+
+    vector<int> vec = {1,2,3};          
+    cout << func20(vec, 0) << endl;     // 返回引用
+    func20(vec, 2) = 122;               // 修改返回的引用
+    for_each(vec.begin(), vec.end(), [](int val){cout << val << " ";});  // 1 2 122
+    cout << endl;
+
+    func21(1);          // int 1
+    func21(2.3);        // double 2.3
+    func21("str");      // string str
+
+    int a = 1;
+    int b = 2;
+    cout << Max(a, b) << endl;          // int Max(int a, int b)  2 当函数模板和普通函数都符合调用时,优先选择普通函数
+    cout << Max<>(a, b) << endl;        // T Max(T a, T b) 2        若显示使用函数模板,则使用<> 类型列表
+    cout << Max(3.0, 4.0) << endl;      // T Max(T a, T b) 4        如果函数模板产生更好的匹配使用函数模板
+    cout << Max(5.0, 6.0, 7.0) << endl; // T Max(T a, T b, T c)  T Max(T a, T b) T Max(T a, T b) 7
+    cout << Max('a', 100) << endl;      //int Max(int a, int b)  100    调用普通函数 可以隐式类型转换
+
+    print(factorial(3));
+
+}
