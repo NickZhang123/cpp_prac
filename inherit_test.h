@@ -174,7 +174,6 @@ private:
     int b1 = 8;
     int b2 = 16;
 };
-*/
 
 class testA {
 public:
@@ -187,5 +186,21 @@ public:
         testA::ppp();
     }
 };
+*/
+// 重载、重写、覆盖
+class base {
+public:
+    virtual void print() { cout << "base" << endl; };
+    virtual void print() const { cout << "const base" << endl; };
+};
+
+class derive : public base {
+public:
+    // 参数不同，无法发生重写； 可以发生覆盖，覆盖父类的虚函数
+    virtual void print(int a) { cout << "son" << endl; };  
+};
+
+
+
 
 void test_inherit();

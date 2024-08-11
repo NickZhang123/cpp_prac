@@ -24,13 +24,14 @@ void test_memalloc()
 
     alloc.deallocate(p, cnt);               // 释放内存
 }
-*/
+
 
 
 void testA::ppp()
 {
     cout << "testA::ppp" << endl;
 }
+*/
 
 void test_inherit()
 {   
@@ -158,10 +159,17 @@ void test_inherit()
     cout << func[0][0] << endl;
     //((Func)func[1][0])();
 
-*/
-  
+    // 纯虚函数
     testB b;
     b.ppp();
+*/
+    // 重载、重写、覆盖
+    derive d;  
+    //d.print(); 	// compile error 虚函数也会发生同名函数覆盖，可以使用d.base::print()调用
+    d.print(2);
+
+    const derive& b = d;
+    //b.print();  // compile error 虚函数也会发生同名函数覆盖，可以使用d.base::print()调用
 
     //Son1 s;
 }
