@@ -319,6 +319,19 @@ int factorial(int n)
     }
 }
 
+template <typename T>
+class MyClass {
+    public:
+        static int cnt;     // 这里只是声明，定义需要再类外
+        static T cnt2;
+};
+
+template<typename T>
+int MyClass<T>::cnt = 0;    // 在类外定义，需要携带模版
+
+template<typename T>
+T MyClass<T>::cnt2 = 0;    // 在类外定义，需要携带模版
+
 void base_test5()
 {
     int *p = func20(10);
@@ -344,4 +357,20 @@ void base_test5()
 
     print(factorial(3));
 
+    // 模板中的static
+    MyClass<int> cls; 
+    MyClass<int> cls2; 
+    MyClass<double> dcls;
+    MyClass<double> dcls2;
+    
+    cls.cnt = 23;    
+    dcls.cnt = 24;
+    print(cls.cnt, cls2.cnt, MyClass<int>::cnt);        // 23 23 23
+    print(dcls.cnt, dcls2.cnt, MyClass<double>::cnt);   //  24 24 24
+
+
+    MyClass<int>::cnt2 = 33;
+    dcls.cnt2 = 44;
+    print(cls.cnt2, cls2.cnt2, MyClass<int>::cnt2);         // 33 33 33
+    print(dcls.cnt2, dcls2.cnt2, MyClass<double>::cnt2);    // 44 44 44
 }
