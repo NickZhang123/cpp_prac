@@ -77,7 +77,16 @@ void test_inherit()
     f4();
 
 
-
-
-
+    cout << sizeof(long) << sizeof(long long) << endl;
+    long **tab = (long **)(&b);
+    cout << "指向虚函数表的指针地址: " << (long long *)&b << endl;
+    cout << "虚函数表地址: " << *(long long *)&b << endl;
+    long long **func = (long long **)&b;
+    cout << "虚函数表中第一个函数指针地址: " << func[0] << endl;
+    ((Fn)func[0][0])();
+    ((Fn)func[0][1])();
+    // 也可以（先取得虚函数表地址，将地址转换为指针数组，每次平移一个指针）
+    long long *p_func = (long long *)*(long long *)&b;
+    ((Fn)p_func[0])();
+    ((Fn)p_func[1])();
 }
