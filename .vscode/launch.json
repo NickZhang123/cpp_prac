@@ -9,7 +9,7 @@
         "type": "cppdbg",
         "request": "launch",
         //"program": "${fileDirname}/${fileBasenameNoExtension}",
-        "program": "${fileDirname}/testout",
+        "program": "${workspaceFolder}/out/finalobj",
         "args": [],
         "stopAtEntry": false,
         "cwd": "${workspaceFolder}",
@@ -24,7 +24,7 @@
             "ignoreFailures": true
             }
         ],
-        "preLaunchTask": "c++的task"
+        //"preLaunchTask": "c++的task"
         }
     ]
 }

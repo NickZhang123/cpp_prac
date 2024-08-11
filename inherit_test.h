@@ -5,12 +5,15 @@ using namespace std;
 class Base {
 public:
     Base() { cout << "Base" << endl; }
-    Base(int data) { cout << "Base" << " " << data << endl; }
-    virtual ~Base() { cout << "~Base" << endl; }
-
+    Base(int data): _data(data) { cout << "Base" << " " << data << endl; }
+    
     virtual void Print() { cout << "Base::Print" << endl; } 
+    virtual void Print2() { cout << "Base::Print2" << endl; } 
+
+    virtual ~Base() { cout << "~Base" << endl; }
+    
 private:
-    int data;
+    int _data;
 };
 
 class Derived : public Base {
@@ -18,7 +21,10 @@ public:
     Derived() { cout << "Derived" << endl; }
     ~Derived() { cout << "~Derived" << endl; }
 
-    void Print() override { cout << "Base::Print" << endl; } 
+    void Print() override { cout << "Derived::Print" << endl; } 
+private:
+    int _data_de;
+    int _data_de2;
 };
 
 
