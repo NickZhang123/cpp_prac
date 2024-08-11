@@ -22,7 +22,7 @@ int main()
     //test_cls();
 
     // 继承相关
-    test_inherit();
+    test_inherit();     // 继承，多重继承，菱形继承，虚继承
 
     return 0;
 }

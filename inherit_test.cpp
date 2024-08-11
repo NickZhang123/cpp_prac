@@ -3,7 +3,7 @@
 # include <memory>
 # include "toos.h"
 
-
+/*
 void test_memalloc()
 {
     allocator<Base> alloc;
@@ -24,6 +24,13 @@ void test_memalloc()
 
     alloc.deallocate(p, cnt);               // 释放内存
 }
+*/
+
+
+void testA::ppp()
+{
+    cout << "testA::ppp" << endl;
+}
 
 void test_inherit()
 {   
@@ -40,13 +47,13 @@ void test_inherit()
     //p->Print();
 
     // print(sizeof(Base));
-
+/*
     using Fn = void(*)();
 
     Base b(333);
     cout << sizeof(Base) << endl;       // 16，包含一个虚汗是表指针8， 一个int成员4， 然后8对齐，形成16
     cout << sizeof(Derived) << endl;    // 24, 包含一个虚汗是表指针8， 一个基类int4， 两个子类int8， 对齐后24
-/*
+
     // 将b地址转化为int指针类型并取值，目的是要取出虚函数表地址
     // 因为地址是指针，可能占用8字节空间，这里使用int4字节不一定正确
     int addr = *(int *)(&b);
@@ -63,7 +70,7 @@ void test_inherit()
     f2();                                       // Base::Print2
     f2 = (Fn)(*((int *)(*(int *)(&b)) + 2));    // Base::Print2
     f2(); 
-*/
+
     // 先将对象转化为三级指针（第一级指针的解引用取虚函数表地址，后面两级指针形成虚函数表的数组表达形式）
     // 好处：1. 对三级指针的解引用获取指针数组格式的二级指针； 
     //      2. 解引用大小取决于解引用的类型，这里类型是void**, void**的大小依然是指针大小，这里是8字节，
@@ -89,4 +96,72 @@ void test_inherit()
     long long *p_func = (long long *)*(long long *)&b;
     ((Fn)p_func[0])();
     ((Fn)p_func[1])();
+
+
+    // 多继承测试
+    using Func = void(*)();
+    Base1 b1;
+    Base2 b2;
+    Son1 son1;
+    cout << &b1 << " " << &b2 << " " << &son1 << endl;
+
+    long long **func = (long long **)&son1;
+    ((Func)func[0][0])();
+    ((Func)func[0][1])();
+    ((Func)func[0][2])();
+    ((Func)func[0][3])();
+
+    cout << &son1 + 16 << endl;
+    func = (long long **)((char *)&son1 + 16); // 转成char*，跳过第一个虚函数表和成员变量
+    ((Func)func[0][0])();
+    ((Func)func[0][1])();
+    ((Func)func[0][2])();
+*/
+/*
+    // 菱形继承
+    using Func = void(*)();
+    Base1 b1;
+    Base2 b2;
+    Son1 son1;
+    cout << &b1 << " " << &b2 << " " << &son1 << endl;
+
+    long long **func = (long long **)&son1;
+    ((Func)func[0][0])();   // Base1::f
+    ((Func)func[0][1])();   // Base::f2
+    ((Func)func[0][2])();   // Base1::g
+    ((Func)func[0][3])();   // Son1::h
+    ((Func)func[0][4])();   // Son1::i
+
+    cout << &son1 + 16 << endl;
+    func = (long long **)((char *)&son1 + 16);
+    ((Func)func[0][0])();   // Base2::f
+    ((Func)func[0][1])();   // Base::f2
+    ((Func)func[0][2])();   // Base2::g
+    ((Func)func[0][3])();   // Son1::h
+*/
+
+/*
+    Base1 b1;
+    using Func = void(*)();
+    long long **func = (long long **)&b1;
+    ((Func)func[0][0])();
+    ((Func)func[0][1])();
+    ((Func)func[0][2])();
+
+    cout << sizeof(Base1) << endl;
+
+    print(&b1, &b1.b1, &(b1.Base::b));
+    
+    cout << (long long *)((char *)&b1 + 16) << endl;
+
+    func = (long long **)((char *)&b1 + 16);
+    cout << func[0][0] << endl;
+    //((Func)func[1][0])();
+
+*/
+  
+    testB b;
+    b.ppp();
+
+    //Son1 s;
 }

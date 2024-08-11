@@ -2,6 +2,7 @@
 
 using namespace std;
 
+/*
 class Base {
 public:
     Base() { cout << "Base" << endl; }
@@ -56,6 +57,135 @@ public:
     base b;
 };
 
+*/
+/* 多继承
+class Base1 {
+public:
+    virtual void f() { cout << "Base1::f" << endl; }
+    virtual void g() { cout << "Base1::g" << endl; }
+    virtual void h() { cout << "Base1::h" << endl; }
+private:
+    int b1 = 1;
+};
+class Base2 {
+public:
+    virtual void f() { cout << "Base2::f" << endl; }
+    virtual void g() { cout << "Base2::g" << endl; }
+    virtual void h() { cout << "Base2::h" << endl; }
+private:
+    int b2 = 2;
+};
 
+class Son1 : public Base1, public Base2 {
+public:
+    virtual void i() { cout << "Son1::i" << endl; }
+    virtual void h() { cout << "Son1::h" << endl; }
+
+private:
+    int s = 4;
+    int b1 = 8;
+    int b2 = 16;
+};
+*/
+
+/*
+// 菱形继承1
+class Base {
+public:
+    Base() { cout << "Base" << endl; }
+    virtual void f() { cout << "Base::f" << endl; }
+    virtual void f2() { cout << "Base::f2" << endl; }
+private:
+    int b = 0xFFFF;
+};
+
+class Base1 : public Base {
+public:
+    Base1() { cout << "Base1" << endl; }
+    virtual void f() { cout << "Base1::f" << endl; }
+    virtual void g() { cout << "Base1::g" << endl; }
+    virtual void h() { cout << "Base1::h" << endl; }
+private:
+    int b1 = 1;
+};
+class Base2 : public Base {
+public:
+    Base2() { cout << "Base2" << endl; }
+    virtual void f() { cout << "Base2::f" << endl; }
+    virtual void g() { cout << "Base2::g" << endl; }
+    virtual void h() { cout << "Base2::h" << endl; }
+private:
+    int b2 = 2;
+};
+
+class Son1 : public Base1, public Base2 {
+public:
+    Son1() { cout << "Son1" << endl; }
+    virtual void i() { cout << "Son1::i" << endl; }
+    virtual void h() { cout << "Son1::h" << endl; }
+
+private:
+    int s = 4;
+    int b1 = 8;
+    int b2 = 16;
+};
+
+*/
+/*
+// 菱形继承2
+class Base {
+public:
+    // Base() { cout << "Base" << endl; }
+    virtual void f() { cout << "Base::f" << endl; }
+    virtual void f2() { cout << "Base::f2" << endl; }
+public:
+    int b = 0xFFFF;
+};
+
+class Base1 : virtual public Base {
+public:
+    // Base1() { cout << "Base1" << endl; }
+    virtual void f() { cout << "Base1::f" << endl; }
+    virtual void g() { cout << "Base1::g" << endl; }
+    virtual void h() { cout << "Base1::h" << endl; }
+public:
+    int b1 = 1;
+};
+
+class Base2 : virtual public Base {
+public:
+    // Base2() { cout << "Base2" << endl; }
+    virtual void f() { cout << "Base2::f" << endl; }
+    virtual void g() { cout << "Base2::g" << endl; }
+    virtual void h() { cout << "Base2::h" << endl; }
+private:
+    int b2 = 2;
+};
+
+class Son1 : public Base1, public Base2 {
+public:
+    // Son1() { cout << "Son1" << endl; }
+    virtual void i() { cout << "Son1::i" << endl; }
+    virtual void h() { cout << "Son1::h" << endl; }
+    virtual void f() { cout << "Son1::f" << endl; }    // 必须覆盖Base1和Base2中都继承了的函数
+
+private:
+    int s = 4;
+    int b1 = 8;
+    int b2 = 16;
+};
+*/
+
+class testA {
+public:
+    virtual void ppp() = 0;
+};
+
+class testB : public testA {
+public:
+    void ppp() {
+        testA::ppp();
+    }
+};
 
 void test_inherit();
