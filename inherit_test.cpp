@@ -33,6 +33,13 @@ void testA::ppp()
 }
 */
 
+std::ostream& operator<< (std::ostream& out, const OpCls2 &cls2) 
+{
+    out << cls2.value;
+    return out;
+}
+
+
 void test_inherit()
 {   
     // 构造顺序测试
@@ -162,7 +169,7 @@ void test_inherit()
     // 纯虚函数
     testB b;
     b.ppp();
-*/
+
     // 重载、重写、覆盖
     derive d;  
     //d.print(); 	// compile error 虚函数也会发生同名函数覆盖，可以使用d.base::print()调用
@@ -172,4 +179,16 @@ void test_inherit()
     //b.print();  // compile error 虚函数也会发生同名函数覆盖，可以使用d.base::print()调用
 
     //Son1 s;
+*/
+
+    OpCls1 obj1(12313);
+    OpCls1 obj2(111);
+
+    obj1 << cout;
+    obj2 << (obj1 << cout);
+    cout << endl;
+
+    OpCls2 obj3(333);
+    OpCls2 obj4(444);
+    cout << obj3 << obj4 << endl;
 }

@@ -1,4 +1,4 @@
-#pragma
+#pragma once
 
 void base_test();
 void base_test2();

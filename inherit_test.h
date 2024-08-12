@@ -1,3 +1,4 @@
+#pragma once
 # include <iostream>
 
 using namespace std;
@@ -186,7 +187,7 @@ public:
         testA::ppp();
     }
 };
-*/
+
 // 重载、重写、覆盖
 class base {
 public:
@@ -199,8 +200,29 @@ public:
     // 参数不同，无法发生重写； 可以发生覆盖，覆盖父类的虚函数
     virtual void print(int a) { cout << "son" << endl; };  
 };
+*/
 
+class OpCls1 {
+private:
+    int value;
+public:
+    OpCls1(int v = 0) : value(v) {}
 
+    // 成员函数重载 <<
+    std::ostream& operator<< (std::ostream& out) const 
+    {
+        out << value;
+        return out;
+    }
+};
 
+class OpCls2 {
+private:
+    int value;
+public:
+    OpCls2(int v = 0) : value(v) {}
+    // 重载为友元
+    friend std::ostream& operator<< (std::ostream& out, const OpCls2 &cls2);
+};
 
 void test_inherit();
