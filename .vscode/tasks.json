@@ -11,6 +11,7 @@
                 "-std=c++17",
                 //"-I", // 指定include
                 //"${workspaceFolder}/cpp/tools/",    
+                "-lpthread",
                 "-o", // 输出对象
                 //"${fileDirname}/out/${fileBasenameNoExtension}",
                 "${workspaceFolder}/out/finalobj",

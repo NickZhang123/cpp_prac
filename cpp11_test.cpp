@@ -1,7 +1,10 @@
 #include <iostream>
 #include <vector>
 #include <memory>
+#include <vector>
+#include <set>
 #include "toos.h"
+
 
 using namespace std;
 
@@ -299,8 +302,32 @@ void test_share_from_this()
     shared_ptr<MyClass> sp(cls);
     auto sp2 = sp->CreateSharedPtr();
     cout << sp.use_count() << endl;
+}
 
+void initialFunc(initializer_list<int> list)
+{
+    for (const auto &i : list) {
+        cout << i << " ";
+    }
+    cout << endl;
+}
 
+class MyClassInit {
+public:
+    MyClassInit() { cout << "MyClassInit" << endl;}
+    MyClassInit(initializer_list<int> list) { cout << "MyClassInit init" << endl;}
+    ~MyClassInit() { cout << "~MyClassInit" << endl;}
+};
+void test_initializerlist()
+{
+    //initialFunc({1,2,3,4,5});
+    
+    int arr[3] = {1,3,4};
+    std::vector<int> vec = {1, 2, 3, 4};  // 使用 initializer_list 初始化 vector
+    std::set<int> mySet = {5, 10, 15};  // 使用 initializer_list 初始化 set
+    MyClassInit cls = {1,2,3,4};         // 使用 initializer_list 初始化 MyClassInit 对象
+    auto list = {1, 2, 3, 4};  // 类型自动推导为 std::initializer_list<int>
+    MyClassInit cls2({1,2,3,4});         // 使用 initializer_list 初始化 MyClassInit 对象
 }
 
 void cpp11_test()
@@ -311,8 +338,9 @@ void cpp11_test()
     //test_lambda();
     //test_autoptr();
     //test_uniqueptr();
-    test_sharedptr();
+    //test_sharedptr();
 
     //test_share_from_this();
     
+    //test_initializerlist();
 }

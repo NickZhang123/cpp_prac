@@ -26,7 +26,8 @@ int main()
     //test_inherit();     // 继承，多重继承，菱形继承，虚继承
 
     // cpp11测试
-    cpp11_test();
+    // cpp11_test();
+    cpp11_concurrent();
 
     return 0;
 }
