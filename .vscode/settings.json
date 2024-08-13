@@ -47,6 +47,8 @@
         "string": "cpp",
         "string_view": "cpp",
         "ranges": "cpp",
-        "cstring": "cpp"
+        "cstring": "cpp",
+        "ctime": "cpp",
+        "iomanip": "cpp"
     }
 }

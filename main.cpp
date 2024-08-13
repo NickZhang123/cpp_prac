@@ -4,6 +4,7 @@
 #include "base_test.h"
 #include "class_test.h"
 #include "inherit_test.h"
+#include "cpp11_test.h"
 
 using namespace std;
 
@@ -22,7 +23,10 @@ int main()
     //test_cls();
 
     // 继承相关
-    test_inherit();     // 继承，多重继承，菱形继承，虚继承
+    //test_inherit();     // 继承，多重继承，菱形继承，虚继承
+
+    // cpp11测试
+    cpp11_test();
 
     return 0;
 }
