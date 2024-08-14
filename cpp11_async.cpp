@@ -2,6 +2,7 @@
 #include <future>
 #include <thread>
 #include <vector>
+#include <iomanip>
 
 using namespace std;
 
@@ -263,9 +264,36 @@ void test_async()
     double b = 3.3;
     string str = "xxx";
 
-    printf1(a, b, str, mp);
+    //printf1(a, b, str, mp);
 
-    printf2(a, b, str, mp);
+    //printf2(a, b, str, mp);
 
-    printf3(a, b, str, mp);
+    //printf3(a, b, str, mp);
+
+    cerr << "err2" << endl;
+    clog << "err" << endl;
+
+    // 设置精度
+    double pi = 3.1415926535897945646151;
+    cout << pi << endl;
+    cout << std::fixed << std::setprecision(2) << pi << std::endl;  // 3.14
+    cout << pi << "-------" << endl;
+
+    // 设置位宽
+    std::cout <<  std::setw(10) << std::left << "Hello" << std::endl;   // Hello
+    std::cout <<  std::setw(10) << std::right << "Hello" << std::endl;  //      Hello
+    cout << pi << "-------" << endl;
+
+    double pi2 = 3.1;
+    cout << setw(15) << right << fixed << setprecision(4) << pi << endl;    //          3.1416
+    cout << setw(15) << right << fixed << setprecision(4) << pi2 << endl;   //          3.1000
+    cout << pi << "-------" << endl;
+
+    // 默认格式和科学计数法
+    std::cout << "Default format: " << std::defaultfloat << pi << std::endl;    // 3.142
+    cout << pi << "-------" << endl;
+    std::cout << "scientific format: " << std::scientific << pi << std::endl;   // 3.1416e+00
+    cout << pi << "-------" << endl;
+    
+
 }
