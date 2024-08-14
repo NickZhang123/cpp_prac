@@ -88,13 +88,19 @@ void test_thread()
     this_thread::sleep_for(chrono::seconds(3));
     g_flag = false;
     t6.join();
-*/
+
 
     thread t7(run2);
     thread t8(run2);
+    
     t7.join();
     t8.join();
-    
+*/
+    thread t9(hello);
+    cout << t9.get_id() << "  xxxxxxx " << this_thread::get_id() << endl;
+    cout << thread::hardware_concurrency() << endl;
+    cout << t9.hardware_concurrency() << endl;
+    t9.join();
 }
 
 std::mutex mtx;
@@ -240,10 +246,28 @@ void test_rwlock()
     
     thread t1(reader, 1);
     thread t2(reader, 2);
-    thread t3(writer, 1);
+    thread t3(writer, 1, 4);
     t1.join();
     t2.join();
     t3.join();
+}
+
+std::once_flag flag;
+void init() 
+{
+    std::cout << "Initialized!" << std::endl;
+}
+
+void threadFunc() 
+{
+    std::call_once(flag, init);
+}
+void  test_callonce()
+{
+    std::thread t1(threadFunc);
+    std::thread t2(threadFunc);
+    t1.join();
+    t2.join();
 }
 
 void cpp11_concurrent()
@@ -254,5 +278,6 @@ void cpp11_concurrent()
     //test_atomic();
     //test_condition();
     // test_rwlock();
+    test_callonce();
     
 }

@@ -27,7 +27,10 @@ int main()
 
     // cpp11测试
     // cpp11_test();
-    cpp11_concurrent();
+    // cpp11_concurrent();
+
+    // 异步测试
+    test_async();
 
     return 0;
 }
