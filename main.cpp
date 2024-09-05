@@ -5,8 +5,38 @@
 #include "class_test.h"
 #include "inherit_test.h"
 #include "cpp11_test.h"
+#include "cpp14_test.h"
+#include "cpp17_test.h"
+#include <unistd.h>
+#include <sys/wait.h>
+#include <deque>
 
 using namespace std;
+
+static int testval;
+
+void test_fork()
+{
+    pid_t pid = fork();
+    if(pid == 0) {          // 子进程
+        printf("I am child, my pid = %d, my parent pid = %d\n", getpid(), getppid());
+    } else if(pid > 0) {    // 父进程
+        printf("I am parent, my pid = %d, my child pid = %d\n", getpid(), pid);
+        wait(NULL);         // 等待子进程退出
+    } else {
+       perror("fork error!\n");
+    }
+}
+
+void test_deque()
+{
+    deque<int> de = {1,2,3,4,5,6,7,8,9,10};
+    cout << "de.front: " << de.front() << endl;
+    for (auto &&i : de) {
+        cout << i << endl;
+    }
+
+}
 
 int main()
 {
@@ -30,7 +60,15 @@ int main()
     // cpp11_concurrent();
 
     // 异步测试
-    test_async();
+    //test_async();
+
+    //cpp14_test();
+    cpp17_test();
+
+    //test_fork();
+    //test_deque();
+
+    //cout << testval << endl;
 
     return 0;
 }

@@ -58,6 +58,9 @@
         "condition_variable": "cpp",
         "mutex": "cpp",
         "shared_mutex": "cpp",
-        "future": "cpp"
+        "future": "cpp",
+        "map": "cpp",
+        "codecvt": "cpp",
+        "filesystem": "cpp"
     }
 }

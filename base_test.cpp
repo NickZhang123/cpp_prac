@@ -23,6 +23,16 @@ void func3(std::ostream& os, int value)
     os << value << std::endl;
 }
 
+void test_return()
+{
+    cout << "test_return1" << endl;
+    cout << "test_return2" << endl;
+    cout << "test_return3" << endl;
+    cout << "test_return4" << endl;
+    cout << "test_return5" << endl;
+    cout << "test_return6" << endl;
+}
+
 void base_test()
 {
 
@@ -69,6 +79,17 @@ void base_test()
     Base* b = new Derived();
     Derived* d1 = static_cast<Derived*>(b);     // 向下转换
 */
+
+    test_return();
+
+    for (int i = 0; i < 10; i++) {
+        cout << "i = " << i << endl;
+    }
+
+    cout << "fdas1" << endl;
+    cout << "fdas2" << endl;
+    cout << "fdas3" << endl;
+    cout << "fdas4" << endl;
 
     cout << "base_test end" << endl;
 }
@@ -373,4 +394,6 @@ void base_test5()
     dcls.cnt2 = 44;
     print(cls.cnt2, cls2.cnt2, MyClass<int>::cnt2);         // 33 33 33
     print(dcls.cnt2, dcls2.cnt2, MyClass<double>::cnt2);    // 44 44 44
+
+    
 }

@@ -6,3 +6,5 @@ inline void testfunc1()
 {
     std::cout << "test" << std::endl;
 }
+
+inline int g = 0;
